@@ -1,33 +1,17 @@
-import express, { Express, Request, Response } from "express"; 
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
+import server from './src/server/index'
+import { LogSuccess } from './src/utils/logger'
 
 // Configuration the .env file
-dotenv.config();
+dotenv.config()
 
-//Create Exppress APP
-const app: Express = express();
-const port: string | number = process.env.PORT || 8000
+const port = process.env.PORT || 8000
 
-// Define the first Route of APP
-app.get('/' , (req: Request, res: Response) => {
-    res.send('Goodbye, world')
+// Execute server
+server.listen(port, () => {
+    LogSuccess('Server on" Running')
 })
 
-// Define the second Route of APP
-app.get('/hello' , (req: Request, res: Response) => {
-    let user = req.query.user || "anonimo"
-    console.log(user)
-    res.send('hello ' + user)
+server.on('error', (error) => {
+    LogSuccess('Server error" ' + error)
 })
-
-
-
-
-
-
-
-// Execute APP and Listen Requests to PORT  
-app.listen(port, () => {
-    console.log("Express Server: Running at server")
-})
-
