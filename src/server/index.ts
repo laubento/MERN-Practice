@@ -16,6 +16,9 @@ server.use(
     app
 )
 
+// Static Server
+server.use(express.static('public'))
+
 //Security config
 server.use(helmet())
 server.use(cors())
