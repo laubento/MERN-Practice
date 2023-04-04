@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import helloRouter from "./HelloRouter";
+import byeRouter from "./Goodbye";
 
 
 
@@ -18,5 +19,6 @@ rootRouter.get('/', (req: Request, res: Response) => {
 // Redirections to Routers & Controllers
 app.use('/', rootRouter)
 app.use('/hello', helloRouter)
+app.use('/goodbye', byeRouter)
 
 export default app
