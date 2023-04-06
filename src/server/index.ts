@@ -1,14 +1,30 @@
 import express, { Express, Request, Response } from "express";
 
+// Swagger
+import swaggerUI from 'swagger-ui-express'
+
 // Security 
 import cors from 'cors'
 import helmet from 'helmet'
 
 // Root Router
 import app from "../routes/index";
+import mongoose from "mongoose";
 
 //Create Express APP
 const server: Express = express();
+
+// * Swagger config and Route
+server.use(
+    '/docs',
+    swaggerUI.serve,
+    swaggerUI.setup(undefined, {
+        swaggerOptions: {
+            url: "/swagger.json",
+            explorer: true
+        }
+    })
+)
 
 // Define SERVE to use '/api' and use rootRouter from 'index.ts' in routes 
 server.use(
@@ -18,6 +34,10 @@ server.use(
 
 // Static Server
 server.use(express.static('public'))
+
+// TODO: Moongose Connection
+mongoose.connect("mongodb://localhost:27017/Test")
+
 
 //Security config
 server.use(helmet())
