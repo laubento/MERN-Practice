@@ -8,7 +8,7 @@ export const userEntity = () => {
         age: Number
     })
 
-    return mongoose.model('TestOne', userSchema)
+    return mongoose.models.TestOne || mongoose.model('TestOne', userSchema)
 
 
 }

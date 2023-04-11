@@ -14,3 +14,4 @@ export class GoodByeController implements IGoodByeController {
     }
 
 }
+ 

@@ -8,3 +8,7 @@ export interface IHelloController{
 export interface IGoodByeController{
     getMessage(date:Date, name?:string): Promise<NameAndDate>
 }
+
+export interface IUserController{
+    getUser(): Promise<any>
+}

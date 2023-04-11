@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import helloRouter from "./HelloRouter";
 import byeRouter from "./Goodbye";
+import userRouter from "./UserRouter";
 
 
 
@@ -20,5 +21,6 @@ rootRouter.get('/', (req: Request, res: Response) => {
 app.use('/', rootRouter)
 app.use('/hello', helloRouter)
 app.use('/goodbye', byeRouter)
+app.use('/users', userRouter)
 
 export default app
