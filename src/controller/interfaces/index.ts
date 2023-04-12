@@ -10,5 +10,5 @@ export interface IGoodByeController{
 }
 
 export interface IUserController{
-    getUser(): Promise<any>
+    getUser(id?: string): Promise<any>
 }

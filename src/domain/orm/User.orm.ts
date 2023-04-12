@@ -13,3 +13,27 @@ export const getAllUsers = async (): Promise<any[] | undefined> => {
     }
     //search all user
 }
+
+export const getUserById = async (id:string):Promise<any | undefined> => {
+
+    try {
+        let userModel = userEntity()
+        return await userModel.findById(id)
+    }
+    catch (error){
+        LogError('ORM ERROR searching id: ' + error)
+    }
+}
+
+
+export const deleteUserById = async (id:string):Promise<any | undefined> => {
+
+    try {
+        let userModel = userEntity()
+        return await userModel.deleteOne({"_id": id})
+    }
+    catch (error){
+        LogError('ORM ERROR deleting id: ' + error)
+        return Error
+    }
+}

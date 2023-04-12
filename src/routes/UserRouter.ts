@@ -11,15 +11,25 @@ userRouter.route('/')
 
     .get(async(req: Request, res: Response) => {
 
+        // Obtain a Query Param
+        let id: any = req?.query?.id
+
         //Create Controller
         const controller: UserController = new UserController();
 
         // obtain Response
-        const response = await controller.getUser();
+        const response = await controller.getUser(id);
 
         //send to the client the response
         return res.send(response);
-})
+    })
+
+    .delete(async (req:Request, res: Response) =>{
+        let id: any = req?.query?.id;
+        const controller: UserController = new UserController();
+        const response = await controller.deleteUser(id);
+        return res.send(response)
+    })
 
 //export HelloRouter
 export default userRouter
