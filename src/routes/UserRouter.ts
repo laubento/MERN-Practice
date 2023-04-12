@@ -31,5 +31,33 @@ userRouter.route('/')
         return res.send(response)
     })
 
+    .post(async (req:Request, res: Response) => {
+
+        let user = {
+            name: 'pepito',
+            email: "kakita",
+            age: 333
+        }
+        
+        const controller: UserController = new UserController();
+        const response = await controller.createNewUser(user)
+        return res.send(response)
+    })
+    
+    .put(async (req: Request, res: Response) => {
+        
+        let id: any = req?.query?.id;
+        
+        let user = {
+            name: 'p',
+            email: "k",
+            age: 3333333
+        }
+
+        const controller: UserController = new UserController();
+        const response = await controller.updateUser(user, id)
+        return res.send(response)
+    })
+
 //export HelloRouter
 export default userRouter

@@ -30,10 +30,35 @@ export const deleteUserById = async (id:string):Promise<any | undefined> => {
 
     try {
         let userModel = userEntity()
-        return await userModel.deleteOne({"_id": id})
+        let userRemove = await userModel.deleteOne({"_id": id})
+        if(!userRemove.deletedCount) return Error
+        return userRemove
     }
     catch (error){
-        LogError('ORM ERROR deleting id: ' + error)
+        LogError('[ORM ERROR] deleting id: ' + error)
         return Error
     }
+}
+
+export const createUser = async (user:any):Promise<any | undefined> => {
+    try {
+        let userModel = userEntity()
+        return await userModel.create(user)
+    }
+    catch (error){
+        LogError('[ORM ERROR] Creating user: ' + error)
+        return Error
+    }
+}
+
+export const updateUser = async (user:any, id: string):Promise<any | undefined> => {
+    try {
+        let userModel = userEntity()
+       return await userModel.findByIdAndUpdate(id, user)
+    }
+    catch (error){
+        LogError('[ORM ERROR] Updating user: ' + error)
+        return Error
+    }
+
 }

@@ -3,7 +3,7 @@ import { IUserController } from './interfaces'
 import { LogSuccess, LogWarning } from '../utils/logger'
 
 
-import { deleteUserById, getAllUsers, getUserById } from '../domain/orm/User.orm'
+import { createUser, deleteUserById, getAllUsers, getUserById, updateUser } from '../domain/orm/User.orm'
 import { BasicResponse } from './types'
 import { response } from 'express'
 
@@ -28,8 +28,8 @@ export class UserController implements IUserController{
             let response:any = ''
             await deleteUserById(id)
             .then((r)=>{
-                console.log('soy r' + r)
                 if(r == Error){
+                    LogWarning('Id of the user not valid')
                     response = {
                         message: "User not found"
                     }
@@ -44,7 +44,7 @@ export class UserController implements IUserController{
                 response = {
                     message: "Error"
                 }
-            })
+            }) 
             return response
         }else{
             LogWarning("No id")
@@ -54,4 +54,17 @@ export class UserController implements IUserController{
         }
     }
 
+    public async createNewUser(user: any): Promise<any>{
+        await createUser(user)
+        return{
+            message: "Creating user"
+        }
+    }
+
+    public async updateUser(user: any, id: string): Promise<any>{
+        await updateUser(user, id)
+        return{
+            message: "update user"
+        }
+    }
 }
