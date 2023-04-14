@@ -11,7 +11,8 @@ export const userEntity = () => {
     let userSchema2 = new mongoose.Schema({
         name: {type: String, require: true},
         email: {type: String, require: true},
-        age: {type: Number, require: true}
+        age: {type: Number, require: true},
+        password: {type: String, require: true}
     })
 
     return mongoose.models.TestOne || mongoose.model('TestOne', userSchema2)

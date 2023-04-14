@@ -2,11 +2,13 @@ import express, { Request, Response } from "express";
 import helloRouter from "./HelloRouter";
 import byeRouter from "./Goodbye";
 import userRouter from "./UserRouter";
+import authRouter from "./authRouter";
+
 
 
 
 // Server instace
-const app = express();
+let app = express()
 
 // Router instance
 let rootRouter = express.Router()
@@ -22,5 +24,7 @@ app.use('/', rootRouter)
 app.use('/hello', helloRouter)
 app.use('/goodbye', byeRouter)
 app.use('/users', userRouter)
+app.use('/auth', authRouter)
 
 export default app
+ 

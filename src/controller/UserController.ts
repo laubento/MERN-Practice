@@ -3,7 +3,7 @@ import { IUserController } from './interfaces'
 import { LogSuccess, LogWarning } from '../utils/logger'
 
 
-import { createUser, deleteUserById, getAllUsers, getUserById, updateUser } from '../domain/orm/User.orm'
+import {deleteUserById, getAllUsers, getUserById, updateUser } from '../domain/orm/User.orm'
 import { BasicResponse } from './types'
 import { response } from 'express'
 
@@ -54,12 +54,12 @@ export class UserController implements IUserController{
         }
     }
 
-    public async createNewUser(user: any): Promise<any>{
-        await createUser(user)
-        return{
-            message: "Creating user"
-        }
-    }
+    // public async createNewUser(user: any): Promise<any>{
+    //     await createUser(user)
+    //     return{
+    //         message: "Creating user"
+    //     }
+    // }
 
     public async updateUser(user: any, id: string): Promise<any>{
         await updateUser(user, id)
@@ -67,4 +67,5 @@ export class UserController implements IUserController{
             message: "update user"
         }
     }
+    
 }

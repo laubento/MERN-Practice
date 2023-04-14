@@ -31,18 +31,18 @@ userRouter.route('/')
         return res.send(response)
     })
 
-    .post(async (req:Request, res: Response) => {
+    // .post(async (req:Request, res: Response) => {
 
-        let user = {
-            name: 'pepito',
-            email: "kakita",
-            age: 333
-        }
+    //     let user = {
+    //         name: 'pepito',
+    //         email: "kakita",
+    //         age: 333
+    //     }
         
-        const controller: UserController = new UserController();
-        const response = await controller.createNewUser(user)
-        return res.send(response)
-    })
+    //     const controller: UserController = new UserController();
+    //     const response = await controller.createNewUser(user)
+    //     return res.send(response)
+    // })
     
     .put(async (req: Request, res: Response) => {
         

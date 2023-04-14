@@ -1,3 +1,4 @@
+import { IUser } from "../../domain/interfaces/IUser.interface";
 import { BasicResponse } from "../types";
 import { NameAndDate } from "../types";
 
@@ -11,4 +12,9 @@ export interface IGoodByeController{
 
 export interface IUserController{
     getUser(id?: string): Promise<any>
+}
+
+export interface IAuthController{
+    registerUser(user: IUser): Promise<any>
+    loginUser(auth: any): Promise<any>
 }

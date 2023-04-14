@@ -1,5 +1,6 @@
 import { userEntity } from "../entities/User.entity";
 import { LogError, LogSuccess } from "../../utils/logger";
+import { IUser } from "../interfaces/IUser.interface";
 
 
 // CRUD
@@ -40,16 +41,16 @@ export const deleteUserById = async (id:string):Promise<any | undefined> => {
     }
 }
 
-export const createUser = async (user:any):Promise<any | undefined> => {
-    try {
-        let userModel = userEntity()
-        return await userModel.create(user)
-    }
-    catch (error){
-        LogError('[ORM ERROR] Creating user: ' + error)
-        return Error
-    }
-}
+// export const createUser = async (user:any):Promise<any | undefined> => {
+//     try {
+//         let userModel = userEntity()
+//         return await userModel.create(user)
+//     }
+//     catch (error){
+//         LogError('[ORM ERROR] Creating user: ' + error)
+//         return Error
+//     }
+// }
 
 export const updateUser = async (user:any, id: string):Promise<any | undefined> => {
     try {
@@ -60,5 +61,11 @@ export const updateUser = async (user:any, id: string):Promise<any | undefined> 
         LogError('[ORM ERROR] Updating user: ' + error)
         return Error
     }
+
+}
+
+// Register and login
+
+export const registerUser = async (user:IUser): Promise<any | undefined> => {
 
 }
