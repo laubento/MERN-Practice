@@ -8,7 +8,13 @@ export const userEntity = () => {
         age: Number
     })
 
-    return mongoose.models.TestOne || mongoose.model('TestOne', userSchema)
+    let userSchema2 = new mongoose.Schema({
+        name: {type: String, require: true},
+        email: {type: String, require: true},
+        age: {type: Number, require: true}
+    })
+
+    return mongoose.models.TestOne || mongoose.model('TestOne', userSchema2)
 
 
 }
