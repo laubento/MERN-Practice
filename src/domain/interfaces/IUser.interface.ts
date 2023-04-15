@@ -4,3 +4,8 @@ export interface IUser{
     age: number,
     password: string
 }
+
+export interface ILogin{
+    email: string,
+    password: string
+}

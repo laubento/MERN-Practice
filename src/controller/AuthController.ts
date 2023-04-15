@@ -1,7 +1,7 @@
 import { IAuthController } from "./interfaces";
 import { LogSuccess, LogWarning } from '../utils/logger'
-import { IUser } from "../domain/interfaces/IUser.interface";
-import { createUser } from "../domain/orm/Auth.orm";
+import { ILogin, IUser } from "../domain/interfaces/IUser.interface";
+import { createUser, loginUser } from "../domain/orm/Auth.orm";
 
 export class AuthController implements IAuthController {
 
@@ -11,8 +11,12 @@ export class AuthController implements IAuthController {
             message: "Creating user"
         }
     }
-    loginUser(auth: any): Promise<any> {
-        throw new Error("Method not implemented.");
+    public async loginUser(user: ILogin): Promise<any> {
+        return await loginUser(user).then((res) => {
+            console.log(res)
+            return res
+        })
+        
     }
     
 }
