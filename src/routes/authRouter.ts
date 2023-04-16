@@ -59,6 +59,7 @@ authRouter.route('/me')
         if(id){
             const controller: AuthController = new AuthController()
             let response: any = await controller.userData(id)
+            if(!response) return res.status(200).send('no user found by id: ' + id)
             return res.status(200).send(response)
         }
         res.send('Please complete user id for start search')
