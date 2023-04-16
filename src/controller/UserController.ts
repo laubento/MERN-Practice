@@ -54,13 +54,6 @@ export class UserController implements IUserController{
         }
     }
 
-    // public async createNewUser(user: any): Promise<any>{
-    //     await createUser(user)
-    //     return{
-    //         message: "Creating user"
-    //     }
-    // }
-
     public async updateUser(user: any, id: string): Promise<any>{
         await updateUser(user, id)
         return{

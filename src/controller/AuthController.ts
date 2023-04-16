@@ -2,6 +2,7 @@ import { IAuthController } from "./interfaces";
 import { LogSuccess, LogWarning } from '../utils/logger'
 import { ILogin, IUser } from "../domain/interfaces/IUser.interface";
 import { createUser, loginUser } from "../domain/orm/Auth.orm";
+import { getAllUsers, getUserById } from "../domain/orm/User.orm";
 
 export class AuthController implements IAuthController {
 
@@ -13,10 +14,13 @@ export class AuthController implements IAuthController {
     }
     public async loginUser(user: ILogin): Promise<any> {
         return await loginUser(user).then((res) => {
-            console.log(res)
             return res
         })
         
+    }
+    public async userData(id:string): Promise<any> {  
+            let response = await getUserById(id)
+            return response
     }
     
 }

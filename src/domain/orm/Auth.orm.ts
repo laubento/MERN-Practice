@@ -3,6 +3,10 @@ import { LogSuccess, LogWarning, LogError } from '../../utils/logger'
 import { ILogin, IUser } from "../interfaces/IUser.interface"
 import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken"
+import dotenv from 'dotenv'
+dotenv.config()
+
+const secret = process.env.SECRETKEY || 'MYSECRETKEY'
 
 export const createUser = async (user: IUser): Promise<any | undefined> => {
     try {
@@ -17,6 +21,7 @@ export const createUser = async (user: IUser): Promise<any | undefined> => {
 
 export const loginUser = async (user: ILogin): Promise<any | undefined> => {
     try {
+        
         let userModel = userEntity()
         let response:any = ''
         await userModel.findOne({ email: user.email }).then((res) => {
@@ -25,7 +30,7 @@ export const loginUser = async (user: ILogin): Promise<any | undefined> => {
                 // if exists password
                 if(bcrypt.compareSync(user.password, res.password)){ 
                     // Create the secret token
-                    return response = jwt.sign({email: res.email}, 'MYSECRETWORD', {expiresIn: "2h"})
+                    return response = jwt.sign({email: res.email}, secret, {expiresIn: "2h"})
                 }
                 response = "Login not valid"
             } 

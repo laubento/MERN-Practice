@@ -2,8 +2,12 @@ import express, { Request, Response } from "express";
 import bcrypt from 'bcrypt'
 import { ILogin, IUser } from '../domain/interfaces/IUser.interface'
 import { AuthController } from "../controller/AuthController";
+import dotenv from 'dotenv'
+import { verifyToken } from "../middlewares/verifyToken.middlewar";
 
 let authRouter = express.Router()
+
+
 
 authRouter.route('/register')
     .post(async (req: Request, res: Response) => {
@@ -26,7 +30,6 @@ authRouter.route('/register')
             return res.send(response)
         }
         return res.send('Please complete all the fields')
-
     })
 
 authRouter.route('/login')
@@ -47,6 +50,18 @@ authRouter.route('/login')
             return res.send(response)
         }
         return res.send('Please complete all the fields')
+    })
+
+authRouter.route('/me')
+    .get(verifyToken, async (req:Request, res: Response) => {
+        let id: any = req?.query?.id
+        
+        if(id){
+            const controller: AuthController = new AuthController()
+            let response: any = await controller.userData(id)
+            return res.status(200).send(response)
+        }
+        res.send('Please complete user id for start search')
     })
 
 
